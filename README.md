@@ -46,50 +46,23 @@ You should see:
 
 ---
 
-## ⚙️ Step 3: Initialize Your Node
+## 🐳 Step 3: Run the Node with Docker Compose
 
-Run this to initialize your node (outside Docker):
-
-```bash
-xiond init <YOUR_MONIKER> --chain-id xion-mainnet-1
-```
-
-Download the mainnet genesis file:
-
-```bash
-curl -L https://snapshots.polkachu.com/genesis/xion/genesis.json > ~/.xiond/config/genesis.json
-```
-
-
-```bash
-mkdir -p ./xion
-cp -r ~/.xiond ./xion/.xiond
-```
+# Clone the repo
+git clone https://github.com/web3dopamine/xion-docker-compose.git
+cd xion-docker-compose
 
 ---
 
-## 🐳 Step 5: Run the Node with Docker Compose
+## ▶️ Step 4: Run the Node with Docker Compose
 
-Create a `docker-compose.yml` in the same directory as this README:
-
-Start the node:
-
-```bash
+# Start the node
 docker-compose up -d
-```
 
-Follow the logs:
 
-```bash
+# View logs
 docker logs -f xiond-mainnet
-```
-
 ---
 
-## ✅ You're All Set
 
-Your node will now sync with the XION mainnet and expose RPC, P2P, gRPC, and other APIs.
 
-🔗 [XION Docs](https://docs.burnt.com/xion)  
-🔗 [Polkachu Genesis](https://polkachu.com/tendermint_snapshots/xion)  
-🔗 [XION GitHub](https://github.com/burnt-labs/xion)

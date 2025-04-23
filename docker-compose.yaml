@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  xiond:
+    container_name: xiond-mainnet
+    image: ghcr.io/burnt-labs/xion:latest
+    restart: unless-stopped
+    command: >
+      xiond start
+      --home /xion/.xiond
+      --x-crisis-skip-assert-invariants
+    environment:
+      - MONIKER=moniker
+    volumes:
+      - ./xion/.xiond:/xion/.xiond
+      - ./xion/.xiond/config:/xion/.xiond/config
+      - ./xion/.xiond/data:/xion/.xiond/data
+    ports:
+      - "26656:26656" # P2P
+      - "26657:26657" # RPC
+      - "1317:1317" # REST API
+      - "9090:9090" # gRPC
+      - "9091:9091" # gRPC-Web
+      - "8545:8545" # EVM-compatible JSON-RPC (if enabled)
+      - "8546:8546" # WebSocket JSON-RPC (if enabled)
+      - "6060:6060" # pprof (performance profiling)
+      - "26660:26660" # Prometheus metrics
+      - "8080:8080" # Rosetta API (if supported)
+    networks:
+      - xion-network
+
+networks:
+  xion-network:
+    driver: bridge
