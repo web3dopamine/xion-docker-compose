@@ -1,1 +1,5 @@
 GENESIS-fromgithub.json
+data
+config/node_key.json
+config/private_key.json
+config/priv_validator_key.json

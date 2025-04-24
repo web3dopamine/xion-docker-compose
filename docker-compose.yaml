@@ -3,29 +3,25 @@ version: "3.8"
 services:
   xiond:
     container_name: xiond-mainnet
-    image: ghcr.io/burnt-labs/xion:latest
+    image: burntnetwork/xion:latest
     restart: unless-stopped
     command: >
       xiond start
-      --home /xion/.xiond
       --x-crisis-skip-assert-invariants
-    environment:
-      - MONIKER=moniker
     volumes:
-      - ./xion/.xiond:/xion/.xiond
-      - ./xion/.xiond/config:/xion/.xiond/config
-      - ./xion/.xiond/data:/xion/.xiond/data
+      - ./config:/home/xiond/.xiond/config
+      - ./data:/home/xiond/.xiond/data
     ports:
-      - "26656:26656" # P2P
-      - "26657:26657" # RPC
-      - "1317:1317" # REST API
-      - "9090:9090" # gRPC
-      - "9091:9091" # gRPC-Web
-      - "8545:8545" # EVM-compatible JSON-RPC (if enabled)
-      - "8546:8546" # WebSocket JSON-RPC (if enabled)
-      - "6060:6060" # pprof (performance profiling)
-      - "26660:26660" # Prometheus metrics
-      - "8080:8080" # Rosetta API (if supported)
+      - "26656:26656" # P2P connection port (CometBFT)
+      - "26657:26657" # RPC connection port (CometBFT)
+      - "1317:1317" # REST API (LCD)
+      - "9090:9090" # gRPC (main RPC interface)
+      - "9091:9091" # gRPC-Web (browser-friendly RPC)
+      - "8545:8545" # EVM JSON-RPC (optional, for MetaMask etc.)
+      - "8546:8546" # WebSocket JSON-RPC (optional)
+      - "6060:6060" # Prometheus metrics / pprof debugging
+      - "26660:26660" # Additional Prometheus/metrics (CometBFT)
+      - "8080:8080" # Rosetta API (optional, for exchanges/wallets)
     networks:
       - xion-network
 

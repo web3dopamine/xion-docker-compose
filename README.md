@@ -1,3 +1,9 @@
+# ✨ No-Brainer XION Mainnet Node Setup (Using Docker Compose)
+
+This is the **fastest and cleanest way** to run a XION mainnet node using Docker Compose. No need to manually configure anything — just clone, build, and run.
+
+---
+
 # 🚀 XION Mainnet Node Setup Guide
 
 This guide walks you through installing `xiond`, configuring the node, and running it with Docker Compose.
