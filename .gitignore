@@ -1,4 +1,5 @@
 GENESIS-fromgithub.json
+.DS_Store
 data
 config/node_key.json
 config/private_key.json
